@@ -1,5 +1,4 @@
 from random import random
-
 class Charcter:
     def __init__(self,targetName,targetLife=0,targetDamage=0,targetDefence=0,targetSpecial=0):
         self.name=targetName
@@ -63,22 +62,24 @@ class Liliya(Charcter):
 class Sakura(Charcter):
 
     def attack(self,target):
-        if random()<0.2:
-            print("Sakura Flame Triggered")
-            self.special=3
-        if self.special>0:
-            target.hurt(5,self,1)
-            self.special-=1
+
         if random()<0.25:
             print("Sakura Crit")
             target.hurt(self.damage,self,2)
         else:
             target.hurt(self.damage,self,0)
 
+        if random()<0.2:
+            print("Sakura Flame Triggered")
+            self.special=3
+        if self.special>0:
+            target.hurt(5,self,1)
+            self.special-=1
+
 def match():
     # p2=Bronya("Bronya",100,26,8)
     p2=Sakura("Sakura",100,28,7)
-    p1=Liliya("Liliya",100,20,11)
+    p1=Bronya("Bronya",100,26,8)
     try:
         i=1
         while True:
@@ -96,7 +97,7 @@ def match():
         else:
             return p1.name
 
-matchNum=10000
+matchNum=100000
 score={}
 while matchNum>0:
     winner=match()
